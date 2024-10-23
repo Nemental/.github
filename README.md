@@ -4,59 +4,10 @@ This repository contains reusable GitHub Actions workflows to standardize CI/CD 
 
 ## Available Workflows
 
-### Reusable Workflow for Semantic Release (release.yml)
+- [Automated release and changelog with semantic-release](/.github/workflows/release/README.md)
+- [Docker build and push](/.github/workflows/build/README.md)
 
-This workflow automates the semantic versioning and release process for your project using semantic-release. It calculates the next version based on commits and updates the project accordingly.
-
-**Features**
-- Automated Version Management: Automatically determines the next version based on commit history (using semantic commit messages).
-- Node.js Environment Setup: Configures the environment to run semantic-release.
-- GitHub Integration: Pushes new version tags, updates issues, pull requests, and release notes.
-
-**Inputs**
-| Input | Optional | Default | Description |
-| --- | --- | --- | --- |
-| node_version | true | 20 | Specifies which Node.js version to use. |
-
-**Outputs**
-| Output | Description |
-| --- | --- |
-| version | Specifies which Node.js version to use. |
-
-**Example Usage**
-```yaml
-jobs:
-  semantic:
-    uses: nemental/.github/.github/workflows/release.yml@main
-    with:
-      node_version: 18
-```
-
-### Reusable Workflow for Docker Build (build.yml)
-
-This workflow automates the process of building and pushing Docker images to the GitHub Container Registry (GHCR). It simplifies multi-platform Docker builds, tag management, and image publishing.
-
-**Features**
-- QEMU Setup: Enables multi-platform support for Docker builds.
-- Buildx Setup: Provides advanced Docker build capabilities (cross-platform, caching, etc.).
-- Automatic Tagging: Uses the Docker metadata action to generate and manage tags (e.g., latest, version tags).
-- GHCR Integration: Pushes Docker images to the GitHub Container Registry.
-
-**Inputs**
-| Input | Optional | Default | Description |
-| --- | --- | --- | --- |
-| version | true |  | A tag for the Docker image. |
-
-**Example Usage**
-```yaml
-jobs:
-  docker:
-    uses: nemental/.github/.github/workflows/build.yml@main
-    with:
-      version: "v1.2.3"
-```
-
-## Example: Combining Workflows 
+## Example: Combining Workflows "Release" and "Build"
 
 The reusable workflows can be combined to automate both version releases and Docker builds in one pipeline. Here’s an example that first runs the semantic-release workflow to determine the version, and then uses that version to build and push a Docker image.
 ```yaml
@@ -67,10 +18,10 @@ on:
 
 jobs:
   semantic:
-    uses: nemental/.github/.github/workflows/release.yml@main
+    uses: nemental/.github/.github/workflows/release/main.yml@main
 
   docker:
-    uses: nemental/.github/.github/workflows/build.yml@main
+    uses: nemental/.github/.github/workflows/build/main.yml@main
     needs: semantic
     with:
       version: ${{ needs.semantic.outputs.version }}
@@ -80,7 +31,7 @@ jobs:
 
 In your project, reference a workflow by its name and version. You can call the workflow from this repository using the syntax:
 ```yaml
-uses: nemental/.github/.github/workflows/[workflow_name].yml@main
+uses: nemental/.github/.github/workflows/[workflow_name]/main.yml@main
 ```
 
 ## Contribution
