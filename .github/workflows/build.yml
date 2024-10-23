@@ -9,6 +9,7 @@ on:
         required: false
         type: string
 
+jobs:
   docker:
     name: Docker Build Push
     runs-on: ubuntu-latest
