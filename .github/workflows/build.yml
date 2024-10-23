@@ -43,7 +43,7 @@ jobs:
              ${{ inputs.app && inputs.version && format('type=raw,value={0}-{1}', inputs.app, inputs.version) }}
 
              # $version if inputs.app is not defined and inputs.version is defined
-             ${{ !inputs.app && inputs.version && format('type=raw,value={0}', inputs.version) }}
+             ${{ !inputs.app && inputs.version && format('type=raw,value={0}', inputs.version) || '' }}
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
