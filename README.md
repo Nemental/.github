@@ -13,10 +13,12 @@ This workflow automates the semantic versioning and release process for your pro
 - Node.js Environment Setup: Configures the environment to run semantic-release.
 - GitHub Integration: Pushes new version tags, updates issues, pull requests, and release notes.
 
+**Inputs**
 | Input | Optional | Default | Description |
 | --- | --- | --- | --- |
 | node_version | true | 20 | Specifies which Node.js version to use. |
 
+**Outputs**
 | Output | Description |
 | --- | --- |
 | version | Specifies which Node.js version to use. |
@@ -40,6 +42,7 @@ This workflow automates the process of building and pushing Docker images to the
 - Automatic Tagging: Uses the Docker metadata action to generate and manage tags (e.g., latest, version tags).
 - GHCR Integration: Pushes Docker images to the GitHub Container Registry.
 
+**Inputs**
 | Input | Optional | Default | Description |
 | --- | --- | --- | --- |
 | version | true |  | A tag for the Docker image. |
