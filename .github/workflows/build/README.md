@@ -11,6 +11,8 @@ This workflow automates the process of building and pushing Docker images to the
 **Inputs**
 | Input | Optional | Default | Description |
 | --- | --- | --- | --- |
+| app | true |  | The app name in case of monorepo and matrix workflow. |
+| dockerfile | true | Dockerfile | Path to the Dockerfile. |
 | version | true |  | A tag for the Docker image. |
 
 **Example Usage**
@@ -19,5 +21,6 @@ jobs:
   docker:
     uses: nemental/.github/.github/workflows/build/main.yml@main
     with:
+      dockerfile: "docker/Dockerfile"
       version: "v1.2.3"
 ```
