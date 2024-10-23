@@ -37,10 +37,10 @@ jobs:
           images: ghcr.io/${{ github.repository }}
           tags: |
              # $app-latest if inputs.app is defined, otherwise just latest
-             ${{ inputs.app && format('type=raw,value={0}-latest', inputs.app) || 'type=raw,value=latest' }}
+             ${{ inputs.app && format('type=raw,value=latest-{0}', inputs.app) || 'type=raw,value=latest' }}
 
              # $app-$version if inputs.app and inputs.version are defined
-             ${{ inputs.app && inputs.version && format('type=raw,value={0}-{1}', inputs.app, inputs.version) }}
+             ${{ inputs.app && inputs.version && format('type=raw,value={0}-{1}', inputs.version, inputs.app) }}
 
              # $version if inputs.app is not defined and inputs.version is defined
              ${{ !inputs.app && inputs.version && format('type=raw,value={0}', inputs.version) || '' }}
