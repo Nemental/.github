@@ -4,8 +4,8 @@ This repository contains reusable GitHub Actions workflows to standardize CI/CD 
 
 ## Available Workflows
 
-- [Automated release and changelog with semantic-release](/.github/workflows/release/README.md)
-- [Docker build and push](/.github/workflows/build/README.md)
+- [Automated release and changelog with semantic-release](/.github/workflows/release.README.md)
+- [Docker build and push](/.github/workflows/build.README.md)
 
 ## Example: Combining Workflows "Release" and "Build"
 
